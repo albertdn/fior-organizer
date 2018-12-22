@@ -1310,6 +1310,8 @@ a:hover {
 
 #lightgallery .item {
   margin-bottom: 30px;
+  display: flex;
+  align-items: center;
 }
 
 /*# sourceMappingURL=style.css.map */
