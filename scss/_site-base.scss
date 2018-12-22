@@ -7,6 +7,20 @@ body {
 	font-size: $font-size-base;
 	// background: lighten($black, 18%);
 }
+
+a {
+	color: $pink
+}
+
+.text-primary {
+	color: $pink!important
+}
+
+.btn-primary {
+	background-color: $pink!important;
+	border-color: $pink!important;
+}
+
 ::-moz-selection { 
 	background: $black;
 	color: $white;
@@ -25,6 +39,15 @@ a {
 .text-black {
 	color: $black!important;
 }
+
+.text-pink {
+	color: $pink!important;
+}
+
+.text-pink-darker {
+	color: $pink-darker!important;
+}
+
 .bg-black {
 	background: $black!important;
 }
@@ -103,7 +126,7 @@ a {
 }
 
 .site-section-heading {
-	color: $black;
+	color: $pink-darker;
 	position: relative;
 	font-size: 2.5rem;
 	@include media-breakpoint-up(md) {
@@ -116,7 +139,7 @@ a {
 		position: absolute;
 		width: 100px;
 		height: 1px;
-		background: $black;
+		background: $pink-darker;
 	}
 	&.text-center {
 		&:after {
@@ -128,7 +151,7 @@ a {
 			position: absolute;
 			width: 100px;
 			height: 1px;
-			background: $black;
+			background: $pink-darker;
 		}	
 	}
 }
