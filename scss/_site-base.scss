@@ -19,6 +19,16 @@ a {
 .btn-primary {
 	background-color: $pink!important;
 	border-color: $pink!important;
+
+	&:hover{
+		background-color: $pink-darker!important;
+		border-color: $pink-darker!important;
+	}
+	&:disabled,:hover{
+		background-color: $pink!important;
+		border-color: $pink!important;
+		opacity: 0.65;
+	}
 }
 
 ::-moz-selection { 

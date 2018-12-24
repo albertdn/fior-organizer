@@ -160,7 +160,7 @@
 
             <div class="row">
               <div class="col-lg-8 mb-5">
-                <form action="#">
+                <form id="formContact" autocomplete="off" onsubmit="event.preventDefault(); verifyForm();">
 
                   <div class="row form-group">
                     <div class="col-md-6 mb-3 mb-md-0">
@@ -198,7 +198,7 @@
 
                   <div class="row form-group">
                     <div class="col-md-12">
-                      <input type="submit" value="Send Message" class="btn btn-primary py-2 px-4 text-white">
+                      <input id="submitBtn" type="submit" value="Send Message" class="btn btn-primary py-2 px-4 text-white">
                     </div>
                   </div>
 
@@ -260,6 +260,58 @@
     $(document).ready(function () {
       $('#lightgallery').lightGallery();
     });
+
+    verifyForm = function (event) {
+      var fname = document.forms["formContact"]["fname"].value;
+      var lname = document.forms["formContact"]["lname"].value;
+      var email = document.forms["formContact"]["email"].value;
+      var subject = document.forms["formContact"]["subject"].value;
+      var message = document.forms["formContact"]["message"].value;
+
+      if (fname == null || fname == "", email == null && email == "", lname == null || lname == "", subject == null || subject == "", message == null || message == "") {
+        alert("Please fill all field to contact us");
+      } else if (email) {
+        if (!validateEmail(email)) {
+          alert("Please insert valid email address");
+          return false;
+        } else {
+          document.getElementById('submitBtn').disabled = true;
+          let mailBody = "<p>From: " + fname + " " + lname + "</p>" +
+            "<p>Email: " + email + "</p>" +
+            "<p>Subject: <b>" + subject + "</b></p>" +
+            "<p>Message: " + message + "</p>";
+          document.getElementById('submitBtn').value = "Loading...";
+          sendEmail(mailBody);
+        }
+      }
+    }
+
+    validateEmail = function (email) {
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        return (true);
+      }
+      return (false);
+    }
+
+    sendEmail = function (mailBody) {
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+      xhr.open("POST", 'https://code.aashari.id/api/v1/mails', false);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(
+        JSON.stringify({
+          "payload": "eyJhZG1pbmlzdHJhdG9yQGZpb3Jvcmdhbml6ZXIuY29tIjoiYXNkYXNkcXdlcXdlIn0=",
+          "from_name": "Admin Fior",
+          "to_email": "info@fiororganizer.com",
+          "to_name": "Fior Organizer",
+          "subject": "You have New Message from Fior Website!",
+          "body": mailBody,
+        })
+      );
+      alert("Your message is successfully sent. We'll reach back to you immediately.");
+      location.reload();
+    }
+
   </script>
 
 </body>

@@ -19,6 +19,15 @@ a {
   background-color: #e7bebf !important;
   border-color: #e7bebf !important;
 }
+.btn-primary:hover {
+  background-color: #a55f76 !important;
+  border-color: #a55f76 !important;
+}
+.btn-primary:disabled, .btn-primary :hover {
+  background-color: #e7bebf !important;
+  border-color: #e7bebf !important;
+  opacity: 0.65;
+}
 
 ::-moz-selection {
   background: #000;
