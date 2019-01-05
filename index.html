@@ -208,6 +208,31 @@
         <div class="swiper-button-next"></div>
         <div class="swiper-scrollbar"></div>
       </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+          <h3>Testimonies of Our Service</h3>
+          <p>
+            <i>from Bridestory</i>
+          </p>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="review-section">
+          </div>
+          <nav>
+            <ul class="pagination review-pagination justify-content-center">
+              <li class="page-item page-prev disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+              </li>
+              <li class="page-item page-next">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
     </div>
 
     <div class="footer py-4">
@@ -244,6 +269,103 @@
     $(document).ready(function () {
       $('#lightgallery').lightGallery();
     });
+
+    var data = [];
+    var currentPage = 1;
+    var pageSize = 5;
+    var pagesCount = 0;
+    var totalPages = 0;
+
+    function fetchReview() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          data = JSON.parse(xhttp.response);
+          loadPagination();
+        }
+      };
+      xhttp.open("GET", "http://www.fiororganizer.com/review-fior.json", true);
+      xhttp.send();
+    }
+
+    function appendReview(currentPage) {
+      let reviewSection = document.getElementsByClassName("review-section")[0];
+      while (reviewSection.firstChild) {
+        reviewSection.removeChild(reviewSection.firstChild);
+      }
+      for (var i = (currentPage - 1) * 5; i < currentPage * 5; i++) {
+        var div = document.createElement('div');
+        div.className = 'mb-5';
+        div.innerHTML = '<h4 class="text-primary">' + data[i].title + '</h4>' +
+          '<p style="word-break:break-word">' + data[i].review + '</p>' +
+          '<p class="text-pink-darker mb-0">' + data[i].name + '</p>' +
+          '<p class="font-italic mb-0">' + data[i].date + '</p>';
+        reviewSection.appendChild(div);
+      }
+    }
+
+    function loadPagination() {
+      pagesCount = data.length;
+      totalPages = Math.ceil(pagesCount / pageSize);
+      var nav = '';
+
+      for (var s = 1; s <= totalPages; s++) {
+        var li = document.createElement('li');
+        li.className = 'page-item number';
+        li.innerHTML += '<a href="#" class="page-link">' + s + '</a>';
+        $(".page-next").before(li);
+      }
+      document.getElementsByClassName('page-item')[1].className = "page-item number active";
+      var click = document.getElementsByClassName('number');
+      addListener(click);
+      appendReview(currentPage);
+    }
+
+    function addListener(element) {
+      for (var i = 0; i < element.length; i++) {
+        element[i].addEventListener("click", changePage);
+      }
+    }
+
+    function changePage(e) {
+      e.preventDefault();
+      $(".pagination li").removeClass("active");
+      $(this).addClass("active");
+      currentPage = parseInt($(this).text());
+      currentPage != 1 ? $(".pagination li.page-prev").removeClass("disabled") : $(".pagination li.page-prev").addClass("disabled");
+      currentPage != totalPages ? $(".pagination li.page-next").removeClass("disabled") : $(".pagination li.page-next").addClass("disabled");
+      appendReview(currentPage);
+    }
+
+    $(".pagination li.page-prev").click(function (e) {
+      e.preventDefault();
+      currentPage = currentPage > 1 ? (currentPage - 1) : 1;
+      if ($(this).next().is('.active')) return;
+      $('.number.active').removeClass('active').prev().addClass('active');
+      if (currentPage == 1) {
+        $(".pagination li.page-prev").addClass("disabled");
+        $(".pagination li.page-prev").removeClass("active");
+      } else {
+        $(".pagination li.page-next").removeClass("disabled")
+      }
+      appendReview(currentPage);
+    });
+
+    $(".pagination li.page-next").click(function (e) {
+      e.preventDefault();
+      currentPage = currentPage < totalPages ? (currentPage + 1) : totalPages;
+      if ($(this).prev().is('.active')) return;
+      $('.number.active').removeClass('active').next().addClass('active');
+      if (currentPage == totalPages) {
+        $(".pagination li.page-next").addClass("disabled");
+        $(".pagination li.page-next").removeClass("active");
+      } else {
+        $(".pagination li.page-prev").removeClass("disabled")
+      }
+      appendReview(currentPage);
+    });
+
+    fetchReview();
   </script>
 
 </body>
