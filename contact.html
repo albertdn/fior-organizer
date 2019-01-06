@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300i,400,700" rel="stylesheet">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
 
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap1.min.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
   <link rel="stylesheet" href="css/jquery-ui.css">
   <link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -282,7 +282,14 @@
             "<p>Subject: <b>" + subject + "</b></p>" +
             "<p>Message: " + message + "</p>";
           document.getElementById('submitBtn').value = "Loading...";
+          let autoReplyBody = "<p style='color:gray'>##- Please Do Not Reply This Email -##</p>" +
+          "<h3>[Ini adalah email otomatis konfirmasi bahwa email anda telah diterima tim kami]</h3>"+
+          "<p>Terima kasih sudah mengontak kami. Pesan anda sudah kami terima dan akan segera kami respon.</p>"+
+          "<p>Salam hangat,</p>"+
+          "<p>Fior Family</p>"
+
           sendEmail(mailBody);
+          autoReply(autoReplyBody, email, fname, lname);
         }
       }
     }
@@ -311,6 +318,23 @@
       );
       alert("Your message is successfully sent. We'll reach back to you immediately.");
       location.reload();
+    }
+
+    autoReply = function (mailBody, email) {
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+      xhr.open("POST", 'https://code.aashari.id/api/v1/mails', false);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(
+        JSON.stringify({
+          "payload": "eyJhZG1pbmlzdHJhdG9yQGZpb3Jvcmdhbml6ZXIuY29tIjoiYXNkYXNkcXdlcXdlIn0=",
+          "from_name": "Fior Organizer Auto Reply",
+          "to_email": email,
+          "to_name": fname + " " + lname,
+          "subject": "[Automatic Email Notification Request received]",
+          "body": mailBody,
+        })
+      );
     }
 
   </script>

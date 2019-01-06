@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300i,400,700" rel="stylesheet">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
 
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap1.min.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
   <link rel="stylesheet" href="css/jquery-ui.css">
   <link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -161,7 +161,10 @@
                 <div class="h-100 p-4 p-lg-5 bg-light site-block-feature-7">
                   <span class="icon flaticon-013-calendar display-3 text-primary mb-4 d-block"></span>
                   <h3 class="text-pink-darker h4">Wedding Planner</h3>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum exercitationem quae id dolorum debitis.</p>
+                  <p>FIOR assist to maintain your budget, time, and energy.
+                    Budgeting, Meeting and Negotiating, Management,
+                    Consulting about the wedding. Finalizing all vendor and
+                    makesure everything smooth and well-prepared.</p>
                   <a id="btn-modal-wp" href data-toggle="modal">
                     <strong class="font-weight-bold text-primary">Request For Quotation</strong>
                   </a>
@@ -171,7 +174,7 @@
                 <div class="h-100 p-4 p-lg-5 bg-light site-block-feature-7">
                   <span class="icon flaticon-068-newlyweds-1 display-3 text-primary mb-4 d-block"></span>
                   <h3 class="text-pink-darker h4">Wedding Organizer</h3>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum exercitationem quae id dolorum debitis.</p>
+                  <p>Stress-free before the wedding or on your wedding day</p>
                   <a id="btn-modal-wo" href data-toggle="modal">
                     <strong class="font-weight-bold text-primary">Request For Quotation</strong>
                   </a>
@@ -191,8 +194,8 @@
               <div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5 mb-lg-5">
                 <div class="h-100 p-4 p-lg-5 bg-light site-block-feature-7">
                   <span class="icon flaticon-011-briefcase display-3 text-primary mb-4 d-block"></span>
-                  <h3 class="text-pink-darker h4">Profesional crew</h3>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum exercitationem quae id dolorum debitis.</p>
+                  <h3 class="text-pink-darker h4">Professional crew</h3>
+                  <p>Hand picked Professional Crew to make sure your Big day runs smoothly</p>
                 </div>
               </div>
               <div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5 mb-lg-5">
@@ -371,7 +374,15 @@
             "<p>Date: " + date + "</p>" +
             "<p>Venue: " + venue + "</p>" +
             "<p>Invitees: " + invitees + "</p>"
+
+          let autoReplyBody = "<p style='color:gray'>##- Please Do Not Reply This Email -##</p>" +
+          "<h3>[Ini adalah email otomatis konfirmasi bahwa email anda telah diterima tim kami]</h3>"+
+          "<p>Terima kasih sudah meminta quotation untuk acara anda. Permintaan anda sudah kami terima dan akan segera kami respon.</p>"+
+          "<p>Salam hangat,</p>"+
+          "<p>Fior Family</p>"
+
           sendEmail(mailBody);
+          autoReply(autoReplyBody, email, fname, lname);
         }
       }
     }
@@ -412,6 +423,23 @@
       );
       alert("Your message is successfully sent. We'll reach back to you immediately.");
       location.reload();
+    }
+
+    autoReply = function(mailBody, email){
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+      xhr.open("POST", 'https://code.aashari.id/api/v1/mails', false);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(
+        JSON.stringify({
+          "payload": "eyJhZG1pbmlzdHJhdG9yQGZpb3Jvcmdhbml6ZXIuY29tIjoiYXNkYXNkcXdlcXdlIn0=",
+          "from_name": "Fior Organizer Auto Reply",
+          "to_email": email,
+          "to_name": fname + " " + lname,
+          "subject": "[Automatic Email Notification Request received]",
+          "body": mailBody,
+        })
+      );
     }
   </script>
 
