@@ -28,6 +28,8 @@
 
   <link rel="stylesheet" href="css/style.css">
 
+  <script src="js/header-nav.js"></script>
+
 </head>
 
 <body>
@@ -66,30 +68,15 @@
                 </li>
                 <li class="has-children">
                   <a href="#">Portfolio</a>
-                  <ul class="dropdown">
+                  <ul id="portfolio" class="dropdown">
                     <li class="has-children">
                       <a href="#">International Wedding</a>
-                      <ul class="dropdown">
-                        <li>
-                          <a href="Wisely-Sharon.html">Wisely - Sharon</a>
-                        </li>
-                        <li>
-                          <a href="Aldi-Windy.html">Aldi - Windy</a>
-                        </li>
-                        <li>
-                          <a href="Fredi-Inge.html">Fredi - Inge</a>
-                        </li>
+                      <ul id="international" class="dropdown">
                       </ul>
                     </li>
                     <li class="has-children">
                       <a href="#">National Wedding</a>
-                      <ul class="dropdown">
-                        <li>
-                          <a href="Andre-Via.html">Andre - Via</a>
-                        </li>
-                        <li>
-                          <a href="Tommy-Selia.html">Tommy - Selia</a>
-                        </li>
+                      <ul id="national" class="dropdown">
                       </ul>
                     </li>
                   </ul>
@@ -97,10 +84,10 @@
                 <li>
                   <a href="services.html">Services</a>
                 </li>
-                <li>
+                <li class="active">
                   <a href="about.html">About</a>
                 </li>
-                <li class="active">
+                <li>
                   <a href="contact.html">Contact</a>
                 </li>
               </ul>
@@ -111,22 +98,17 @@
             <div class="d-none d-xl-inline-block">
               <ul class="site-menu js-clone-nav ml-auto list-unstyled d-flex text-right mb-0" data-class="social">
                 <li>
-                  <a href="#" class="pl-3 pr-3">
+                  <a href="https://www.facebook.com/fior.organizer" class="pl-3 pr-3">
                     <span class="icon-facebook"></span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="pl-3 pr-3">
-                    <span class="icon-twitter"></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="pl-3 pr-3">
+                  <a href="https://www.instagram.com/fiororganizer" class="pl-3 pr-3">
                     <span class="icon-instagram"></span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="pl-3 pr-3">
+                  <a href="https://www.youtube.com/channel/UCn81HCdAemZPqOdmZRAVD4g" class="pl-3 pr-3">
                     <span class="icon-youtube-play"></span>
                   </a>
                 </li>
@@ -283,10 +265,10 @@
             "<p>Message: " + message + "</p>";
           document.getElementById('submitBtn').value = "Loading...";
           let autoReplyBody = "<p style='color:gray'>##- Please Do Not Reply This Email -##</p>" +
-          "<h3>[Ini adalah email otomatis konfirmasi bahwa email anda telah diterima tim kami]</h3>"+
-          "<p>Terima kasih sudah mengontak kami. Pesan anda sudah kami terima dan akan segera kami respon.</p>"+
-          "<p>Salam hangat,</p>"+
-          "<p>Fior Family</p>"
+            "<h3>[Ini adalah email otomatis konfirmasi bahwa email anda telah diterima tim kami]</h3>" +
+            "<p>Terima kasih sudah mengontak kami. Pesan anda sudah kami terima dan akan segera kami respon.</p>" +
+            "<p>Salam hangat,</p>" +
+            "<p>Fior Family</p>"
 
           sendEmail(mailBody);
           autoReply(autoReplyBody, email, fname, lname);
