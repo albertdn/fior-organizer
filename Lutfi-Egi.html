@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-  <title>Fior Organizer &mdash; Wedding Day Organizer of Andre and Via</title>
+  <title>Fior Organizer &mdash; Wedding Day Organizer of Lutfi and Egi</title>
   <meta charset="utf-8">
-  <meta name="description" content="Fior Organizer - event specialist, your wedding organizer and wedding planner. Wedding Organizer of Andre and Via special day.">
+  <meta name="description" content="Fior Organizer - event specialist, your wedding organizer and wedding planner. Wedding Organizer of Lutfi and Egi special day.">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300i,400,700" rel="stylesheet">
@@ -29,7 +29,6 @@
   <link rel="stylesheet" href="css/style.css">
 
   <script src="js/header-nav.js"></script>
-
 
 </head>
 
@@ -137,9 +136,9 @@
           <div class="col-md-7">
             <div class="row mb-5">
               <div class="col-12 ">
-                <h2 class="site-section-heading text-center">Andre & Via Wedding Day</h2>
+                <h2 class="site-section-heading text-center">Lutfi & Egi Wedding Day</h2>
                 <p class="text-black text-center">"Terimakasih Team Fior yang udah membantu Wedding Day kita dari pagi sampe selesai acara. Acaranya sukses
-                  banget. Puas banget sama servicenya. Acara on schedule banget. Terbaik deh pokoknya!" Andre - Via</p>
+                  banget. Puas banget sama servicenya. Acara on schedule banget. Terbaik deh pokoknya!" Lutfi - Egi</p>
               </div>
             </div>
           </div>
@@ -179,19 +178,33 @@
   <script src="js/jquery.mousewheel.min.js"></script>
 
   <script src="js/main.js"></script>
-
   <script>
-    $(document).ready(function () {
+    var d1 = document.getElementById('lightgallery');
+
+    function fetchImage() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          data = JSON.parse(xhttp.response);
+          loopImage(data.photos);
+        }
+      };
+      xhttp.open("GET", "https://www.fiororganizer.com/images/Lutfi-Egi/lutfi-egi.json", true);
+      xhttp.send();
+    }
+
+    function loopImage(data) {
+      for (var i = 0; i < data.length; i++) {
+        var html = '<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="https://www.fiororganizer.com/' + data[i] + '" data-sub-html="<h4>Lutfi - Egi</h4><p>Wedding day at Klub Kelapa Gading by Fior Organizer</p>"><a href="#"><img src="https://www.fiororganizer.com/' + data[i] + '" alt="Lutfi Egi Wedding Day by Fior Organizer" class="img-fluid"></a></div>';
+        d1.innerHTML += html;
+      }
       $('#lightgallery').lightGallery({
         download: false,
         zoom: false,
       });
-    });
-    var d1 = document.getElementById('lightgallery');
-    for (var i = 1; i < 66; i++) {
-      var html = '<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="images/Andre-Via/resize/images-small-' + i + '.jpg" data-sub-html="<h4>Andre - Via</h4><p>Wedding day at Taman Kajoe by Fior Organizer</p>"><a href="#"><img src="images/Andre-Via/resize-small/images-small-' + i + '.jpg" alt="Andre Via Wedding Day by Fior Organizer" class="img-fluid"></a></div>';
-      d1.innerHTML += html;
     }
+
+    fetchImage();
   </script>
 
 </body>
