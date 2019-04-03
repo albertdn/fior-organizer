@@ -4,13 +4,11 @@ function fetchClient() {
     if (this.readyState == 4 && this.status == 200) {
       data = JSON.parse(xhttp.response);
       appendNav(data);
-      console.log('here', data);
       return data;
     }
   };
   xhttp.open("GET", "https://www.fiororganizer.com/site-url.json", true);
   xhttp.send();
-  console.log('not here');
 }
 
 function appendNav(data) {

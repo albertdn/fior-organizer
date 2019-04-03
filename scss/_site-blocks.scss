@@ -677,6 +677,10 @@
 .swiper-container {
 
 	height: calc(100vh - 192px);
+
+	&.partner {
+		height: 180px;
+	}
 	// width: 600px;
 	// height: 300px;
 	// border: 10px solid red;
