@@ -189,13 +189,13 @@
           loopImage(data.photos);
         }
       };
-      xhttp.open("GET", "https://www.fiororganizer.com/images/Dani-Carla/dani-carla.json", true);
+      xhttp.open("GET", "https:///images/Dani-Carla/dani-carla.json", true);
       xhttp.send();
     }
 
     function loopImage(data) {
       for (var i = 0; i < data.length; i++) {
-        var html = '<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="https://www.fiororganizer.com/' + data[i] + '" data-sub-html="<h4>Dani - Carla</h4><p>Wedding day at Central Restaurant Tanah Abang by Fior Organizer</p>"><a href="#"><img src="https://www.fiororganizer.com/' + data[i] + '" alt="Dani Carla Wedding Day by Fior Organizer" class="img-fluid"></a></div>';
+        var html = '<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="https:///' + data[i] + '" data-sub-html="<h4>Dani - Carla</h4><p>Wedding day at Central Restaurant Tanah Abang by Fior Organizer</p>"><a href="#"><img src="https:///' + data[i] + '" alt="Dani Carla Wedding Day by Fior Organizer" class="img-fluid"></a></div>';
         d1.innerHTML += html;
       }
       $('#lightgallery').lightGallery({

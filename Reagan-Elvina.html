@@ -189,13 +189,13 @@
           loopImage(data.photos);
         }
       };
-      xhttp.open("GET", "https://www.fiororganizer.com/images/Reagan-Elvina/reagan-elvina.json", true);
+      xhttp.open("GET", "https:///images/Reagan-Elvina/reagan-elvina.json", true);
       xhttp.send();
     }
 
     function loopImage(data) {
       for (var i = 0; i < data.length; i++) {
-        var html = '<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="https://www.fiororganizer.com/' + data[i] + '" data-sub-html="<h4>Reagan - Elvina</h4><p>Wedding day at Ritz Carlton Kuningan by Fior Organizer</p>"><a href="#"><img src="https://www.fiororganizer.com/' + data[i] + '" alt="Reagan Elvina Wedding Day by Fior Organizer" class="img-fluid"></a></div>';
+        var html = '<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="https:///' + data[i] + '" data-sub-html="<h4>Reagan - Elvina</h4><p>Wedding day at Ritz Carlton Kuningan by Fior Organizer</p>"><a href="#"><img src="https:///' + data[i] + '" alt="Reagan Elvina Wedding Day by Fior Organizer" class="img-fluid"></a></div>';
         d1.innerHTML += html;
       }
       $('#lightgallery').lightGallery({
