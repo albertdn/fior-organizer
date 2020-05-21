@@ -7,7 +7,7 @@ function fetchClient() {
       return data;
     }
   };
-  xhttp.open("GET", "https:///site-url.json", true);
+  xhttp.open("GET", "/site-url.json", true);
   xhttp.send();
 }
 

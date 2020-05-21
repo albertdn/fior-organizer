@@ -189,13 +189,13 @@
           loopImage(data.photos);
         }
       };
-      xhttp.open("GET", "https:///images/Piere-Tella/piere-tella.json", true);
+      xhttp.open("GET", "/images/Piere-Tella/piere-tella.json", true);
       xhttp.send();
     }
 
     function loopImage(data) {
       for (var i = 0; i < data.length; i++) {
-        var html = '<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="https:///' + data[i] + '" data-sub-html="<h4>Piere - Tella</h4><p>Wedding day at Bogor by Fior Organizer</p>"><a href="#"><img src="https:///' + data[i] + '" alt="Piere Tella Wedding Day by Fior Organizer" class="img-fluid"></a></div>';
+        var html = '<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="/' + data[i] + '" data-sub-html="<h4>Piere - Tella</h4><p>Wedding day at Bogor by Fior Organizer</p>"><a href="#"><img src="/' + data[i] + '" alt="Piere Tella Wedding Day by Fior Organizer" class="img-fluid"></a></div>';
         d1.innerHTML += html;
       }
       $('#lightgallery').lightGallery({
